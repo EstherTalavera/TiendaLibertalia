@@ -3,7 +3,7 @@
     <solid android:color="#ffffff"/>
 
     <stroke android:width="3dp"
-        android:color="@color/purple_700"/>
+        android:color="@color/moradoLibertalia"/>
 
     <padding android:left="10dp"
         android:top="10dp"

@@ -7,5 +7,6 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="moradoLogo">#5b435b</color>
+    <color name="moradoLogo">#d7d2e3</color>
+    <color name="moradoLibertalia">#8c7ca5</color>
 </resources>

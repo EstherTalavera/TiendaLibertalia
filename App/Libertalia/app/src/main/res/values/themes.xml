@@ -11,9 +11,13 @@
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
         <item name="android:statusBarColor">?attr/colorPrimaryVariant</item>
-        <!-- Customize your theme here. -->
+
+        <!-- Eliminar Action bar predeteminada -->
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
     </style>
 
+    <!-- SplashScreen -->
     <style name="SplashScreen" parent="Theme.Libertalia">
         <item name="android:windowBackground">@drawable/splashscreen</item>
     </style>
