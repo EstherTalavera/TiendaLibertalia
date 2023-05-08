@@ -12,7 +12,7 @@
         android:layout_width="200dp"
         android:layout_height="200dp"
         android:paddingTop="75dp"
-        app:srcCompat="@drawable/logomenu" />
+        app:srcCompat="@drawable/logomini" />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

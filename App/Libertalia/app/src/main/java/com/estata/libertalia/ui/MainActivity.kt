@@ -21,7 +21,7 @@ class MainActivity : AppCompatActivity() {
         //1 segundo de espera para que se vea el splashscreen
         Thread.sleep(1000)
 
-        //regresa al tema principal
+        //Regresa al tema principal
         setTheme(R.style.Theme_Libertalia)
 
         super.onCreate(savedInstanceState)
