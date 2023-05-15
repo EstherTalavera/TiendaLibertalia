@@ -27,6 +27,7 @@ class CatalogoFragment : Fragment() {
         //Mostrar action bar
         (requireActivity() as AppCompatActivity).supportActionBar?.show()
 
+        //Añadir usuario
         repos = FirebaseRepos()
         repos.addUser(arrayListOf(), requireContext())
     }

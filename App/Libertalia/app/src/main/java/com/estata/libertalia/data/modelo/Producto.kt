@@ -8,7 +8,5 @@ data class Producto(
     var precio:Double = 0.0,
     var tallas: ArrayList<String> = ArrayList(),
     var colores: ArrayList<String> = ArrayList(),
-    var imagenes: ArrayList<String> = ArrayList(),
-    var unidades: Int = 0
-
+    var imagenes: ArrayList<String> = ArrayList()
 )

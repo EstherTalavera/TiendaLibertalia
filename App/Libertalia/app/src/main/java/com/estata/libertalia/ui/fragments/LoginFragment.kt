@@ -34,13 +34,13 @@ class LoginFragment : Fragment() {
 
     private fun iniciar(view: View) {
         //Inicializacion de elementos de la vista
-        val edEmail: EditText = view.findViewById(R.id.edtGmail)
-        val edConteaseña: EditText = view.findViewById(R.id.edtContraseña)
+        val edtEmail: EditText = view.findViewById(R.id.edtGmail)
+        val edtConteaseña: EditText = view.findViewById(R.id.edtContraseña)
         val btnRegistrar: Button = view.findViewById(R.id.btnRegistrar)
         val btnLogear: Button = view.findViewById(R.id.btnLogin)
 
-        val email = edEmail.text
-        val contraseña = edConteaseña.text
+        val email = edtEmail.text
+        val contraseña = edtConteaseña.text
 
         //Registro
         btnRegistrar.setOnClickListener{
