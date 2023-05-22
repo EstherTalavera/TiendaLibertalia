@@ -5,17 +5,29 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:layout_margin="20dp"
     tools:context=".ui.fragments.AdminFragment">
+
+    <Button
+        android:id="@+id/btnRecargar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/moradoLibertalia"
+        app:icon="@android:drawable/ic_popup_sync"
+        app:layout_constraintBottom_toTopOf="@id/rvProductos"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvProductos"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="25dp"
+        app:layout_constraintTop_toBottomOf="@id/btnRecargar"
         app:layout_constraintBottom_toTopOf="@id/btnNuevo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+         />
 
     <Button
         android:id="@+id/btnNuevo"

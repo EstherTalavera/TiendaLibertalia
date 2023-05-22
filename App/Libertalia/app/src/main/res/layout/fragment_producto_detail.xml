@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.fragments.ProductoDetailFragment"
+    android:orientation="vertical"
+    android:layout_margin="20dp">
+
+
+    <ImageView
+        android:id="@+id/ivImagen"
+        android:layout_width="match_parent"
+        android:layout_height="350dp"/>
+
+    <TextView
+        android:id="@+id/tvNombre"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nombre del producto"
+        android:textSize="35dp"/>
+
+    <LinearLayout
+        android:id="@+id/llOpciones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <Spinner
+            android:id="@+id/desplTallas"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tooltipText="Tallas"
+            android:layout_marginEnd="10dp"/>
+
+        <Spinner
+            android:id="@+id/desplColor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:tooltipText="Colores"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageView
+            android:id="@+id/ivMenos"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"/>
+
+        <TextView
+            android:id="@+id/tvContadorn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="N"
+            android:textSize="25dp"
+            android:layout_marginEnd="10dp"/>
+
+        <ImageView
+            android:id="@+id/ivMas"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="10dp"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tvDescripcion"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Descripcion"
+        android:textSize="25dp"/>
+
+    <LinearLayout
+        android:id="@+id/llBotones"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+        <Button
+            android:id="@+id/btnRegresar"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:text="Regresar al catalogo"
+            android:textSize="15dp"
+            android:backgroundTint="@color/moradoLibertalia"
+            android:layout_marginEnd="25dp"/>
+
+        <Button
+            android:id="@+id/btnAñadir"
+            android:layout_width="175dp"
+            android:layout_height="wrap_content"
+            android:text="Añadir a la cesta"
+            android:textSize="15dp"
+            android:backgroundTint="@color/moradoLibertalia"
+            />
+    </LinearLayout>
+
+</LinearLayout>

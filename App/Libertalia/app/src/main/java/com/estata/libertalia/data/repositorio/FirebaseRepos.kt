@@ -3,6 +3,9 @@ package com.estata.libertalia.data.repositorio
 import android.content.Context
 import android.net.Uri
 import android.widget.Toast
+import androidx.lifecycle.LiveData
+import androidx.navigation.findNavController
+import com.estata.libertalia.R
 import com.estata.libertalia.data.modelo.Pedido
 import com.estata.libertalia.data.modelo.Producto
 import com.estata.libertalia.data.modelo.Usuario
@@ -113,4 +116,22 @@ class FirebaseRepos {
         }
         listaProducto
     }
+
+    //Eliminar producto
+    fun deleteProducto(id: String) {
+        dataBase.collection("productos").document(id).delete()
+    }
+
+    //Editar producto
+    /*fun updateProducto(nombre: String, descripcion: String, categorias: ArrayList<String>,
+                       precio: Double, tallas: ArrayList<String>, colores: ArrayList<String>,
+                       imagenes: ArrayList<Uri>, contexto: Context, id: String) {
+        dataBase.collection("productos").document(id).update("nombre", nombre)
+        dataBase.collection("productos").document(id).update("descipcion", descripcion)
+        dataBase.collection("productos").document(id).update("categorias", categorias)
+        dataBase.collection("productos").document(id).update("precio", precio)
+        dataBase.collection("productos").document(id).update("tallas", tallas)
+        dataBase.collection("productos").document(id).update("colores", colores)
+        dataBase.collection("productos").document(id).update("imagenes", imagenes)
+    }*/
 }

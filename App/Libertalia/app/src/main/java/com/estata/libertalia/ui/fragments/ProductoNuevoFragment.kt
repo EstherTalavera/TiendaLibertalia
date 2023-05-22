@@ -84,16 +84,6 @@ class ProductoNuevoFragment : Fragment() {
         }
     }
 
-    fun iniciar () {
-        //Inicializacion de elemento de la vista
-        val btnAñadir: Button = requireView().findViewById(R.id.btnAñadir)
-
-        //Listener para cambiar de pantalla
-        btnAñadir.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.adminFragment)
-        }
-    }
-
     //añadir imagen
     fun addImg (view: View) {
         //Inicializacion de elemento de la vista
@@ -106,4 +96,16 @@ class ProductoNuevoFragment : Fragment() {
             startActivityForResult(intent, GALLERY_INTENT)
         }
     }
+
+    fun iniciar () {
+        //Inicializacion de elemento de la vista
+        val btnAñadir: Button = requireView().findViewById(R.id.btnAñadir)
+
+        //Listener para cambiar de pantalla
+        btnAñadir.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.adminFragment)
+        }
+    }
+
+
 }

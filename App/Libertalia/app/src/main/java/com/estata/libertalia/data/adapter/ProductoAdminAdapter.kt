@@ -9,7 +9,7 @@ import com.estata.libertalia.data.interfaces.OnItemClickListener
 import com.estata.libertalia.data.modelo.Producto
 import com.estata.libertalia.viewholder.ProductoViewHolder
 
-class ProductoAdminAdapter(private var productoList: List<Producto>, private val listener: OnItemClickListener): RecyclerView.Adapter<ProductoViewHolder>() {
+class ProductoAdminAdapter(private var productoList: ArrayList<Producto>, private val listener: OnItemClickListener): RecyclerView.Adapter<ProductoViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProductoViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return ProductoViewHolder(layoutInflater.inflate(R.layout.producto_admin, parent, false))
@@ -17,7 +17,7 @@ class ProductoAdminAdapter(private var productoList: List<Producto>, private val
 
     override fun onBindViewHolder(holder: ProductoViewHolder, position: Int) {
         val item = productoList[position]
-        holder.bind(item)
+        holder.bind(item, productoList)
 
         holder.itemView.setOnClickListener {
             holder.itemView.setOnClickListener {
@@ -28,7 +28,7 @@ class ProductoAdminAdapter(private var productoList: List<Producto>, private val
 
     override fun getItemCount(): Int = productoList.size
 
-    fun updateData(dataList: List<Producto>) {
+    fun updateData(dataList: ArrayList<Producto>) {
         this.productoList = dataList
         notifyDataSetChanged()
     }

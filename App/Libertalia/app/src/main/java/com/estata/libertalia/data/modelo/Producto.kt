@@ -9,4 +9,4 @@ data class Producto(
     var tallas: ArrayList<String> = ArrayList(),
     var colores: ArrayList<String> = ArrayList(),
     var imagenes: ArrayList<String> = ArrayList()
-)
+) : java.io.Serializable

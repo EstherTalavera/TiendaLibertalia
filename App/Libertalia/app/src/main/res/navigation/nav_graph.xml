@@ -55,5 +55,20 @@
         android:name="com.estata.libertalia.ui.fragments.ContactoFragment"
         android:label="Contacto"
         tools:layout="@layout/fragment_contacto" />
+    <fragment
+        android:id="@+id/pocesadoFragment"
+        android:name="com.estata.libertalia.ui.fragments.PocesadoFragment"
+        android:label="fragment_pocesado"
+        tools:layout="@layout/fragment_pocesado" />
+    <fragment
+        android:id="@+id/productoDetailFragment"
+        android:name="com.estata.libertalia.ui.fragments.ProductoDetailFragment"
+        android:label="fragment_producto_detail"
+        tools:layout="@layout/fragment_producto_detail" />
+    <fragment
+        android:id="@+id/carritoFragment"
+        android:name="com.estata.libertalia.ui.fragments.CarritoFragment"
+        android:label="fragment_carrito"
+        tools:layout="@layout/fragment_carrito" />
 
 </navigation>

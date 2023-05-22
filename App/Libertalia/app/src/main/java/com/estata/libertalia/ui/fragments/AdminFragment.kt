@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import android.widget.AdapterView
 import android.widget.AdapterView.OnItemClickListener
 import android.widget.Button
+import android.widget.ImageView
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -32,20 +33,29 @@ class AdminFragment : Fragment(), com.estata.libertalia.data.interfaces.OnItemCl
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        iniciar(view)
-    }
 
-    private fun iniciar(view: View) {
-        //Inicializacion de elementos de la vista
-        recview = view.findViewById(R.id.rvProductos)
+        //Inicializacion de elemento de la vista
         val btnNuevo: Button = view.findViewById(R.id.btnNuevo)
+        val btnRecargar: Button = view.findViewById(R.id.btnRecargar)
 
-        //Listener para cambiar a la pantalla
+        //Listener para cambiar a la pantalla de nuevo producto
         btnNuevo.setOnClickListener{
             view?.findNavController()?.navigate(R.id.productoNuevoFragment)
         }
 
-        //
+        //Listener para actualizar la vista
+        btnRecargar.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.adminFragment)
+        }
+
+        iniciar(view)
+    }
+
+    fun iniciar(view: View) {
+        //Inicializacion de elemento de la vista
+        recview = view.findViewById(R.id.rvProductos)
+
+        //Recycler view
         var repo = FirebaseRepos()
         var prodList = arrayListOf<Producto>()
 
@@ -58,10 +68,15 @@ class AdminFragment : Fragment(), com.estata.libertalia.data.interfaces.OnItemCl
             var adapter = ProductoAdminAdapter(prodList, this@AdminFragment)
 
             recview.adapter = adapter
+            adapter.notifyDataSetChanged()
         }
     }
 
+    //Listener para pasar los datos del producto a la pantalla de edictar producto
     override fun onItemClick(producto: Producto) {
-        //borrar elemento. Llamar a firestore a traves del repo, que quite el elemento de la lista y la actuelize lista
+        val bundel = Bundle()
+        bundel.putSerializable("productos", producto)
+
+        view?.findNavController()?.navigate(R.id.editarProductoFragment, bundel)
     }
 }

@@ -28,21 +28,17 @@ class ContactoFragment : Fragment() {
         //Inicializacion de elementos de la vista
         val btnCorreo: TextView = view.findViewById(R.id.btnCorreo)
 
-        val correo = "libertalia@gmail.com"
-
-        btnCorreo.setOnClickListener {
-            val intent = Intent(Intent.ACTION_SENDTO).apply {
-                data = Uri.parse("mailto:")
-                putExtra(Intent.EXTRA_EMAIL, arrayOf(correo))
-            }
-
-            if (intent.resolveActivity(requireContext().packageManager) != null) {
-                startActivity(intent)
-            }
+        //Mandar un correo
+        val intent = Intent(Intent.ACTION_SENDTO).apply {
+            type = "text/plain"
+            putExtra(Intent.EXTRA_EMAIL, "libertalia@gmail.com") //Destinatario
+            putExtra(Intent.EXTRA_SUBJECT, "Comision") //Asunto
         }
 
-
-
+        //Listener para mandar el correo
+        btnCorreo.setOnClickListener {
+            startActivity(intent)
+        }
     }
 
 
