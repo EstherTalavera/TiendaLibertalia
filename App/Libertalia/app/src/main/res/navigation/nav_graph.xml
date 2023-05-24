@@ -3,14 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/menu_laterl_nav_graph"
-    app:startDestination="@id/loginFragment">
+    app:startDestination="@id/catalogoFragment">
 
     <!-- Fragmento de login -->
-    <fragment
-        android:id="@+id/loginFragment"
-        android:name="com.estata.libertalia.ui.fragments.LoginFragment"
-        android:label="Login"
-        tools:layout="@layout/fragment_login" />
 
     <!-- Fragmentos del admin -->
     <fragment
