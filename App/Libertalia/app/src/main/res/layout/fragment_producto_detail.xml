@@ -69,28 +69,12 @@
         android:text="Descripcion"
         android:textSize="25dp"/>
 
-    <LinearLayout
-        android:id="@+id/llBotones"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal">
-        <Button
-            android:id="@+id/btnRegresar"
-            android:layout_width="175dp"
-            android:layout_height="wrap_content"
-            android:text="Regresar al catalogo"
-            android:textSize="15dp"
-            android:backgroundTint="@color/moradoLibertalia"
-            android:layout_marginEnd="25dp"/>
-
         <Button
             android:id="@+id/btnAñadir"
-            android:layout_width="175dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Añadir a la cesta"
             android:textSize="15dp"
             android:backgroundTint="@color/moradoLibertalia"
             />
-    </LinearLayout>
-
 </LinearLayout>

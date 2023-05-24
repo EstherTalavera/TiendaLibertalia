@@ -25,13 +25,7 @@ class ProductoDetailFragment : Fragment() {
 
     private fun iniciar(view: View) {
         //Inicializacion de elementos de la vista
-        val btnRegresar: Button = view.findViewById(R.id.btnRegresar)
         val btnAñadir: Button = view.findViewById(R.id.btnAñadir)
-
-        //Listener para cambiar a la pantalla
-        btnRegresar.setOnClickListener{
-            view?.findNavController()?.navigate(R.id.catalogoFragment)
-        }
 
         //Listener para añadir el producto al carrito
         btnAñadir.setOnClickListener{}

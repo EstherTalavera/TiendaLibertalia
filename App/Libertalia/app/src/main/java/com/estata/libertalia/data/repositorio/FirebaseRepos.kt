@@ -51,6 +51,17 @@ class FirebaseRepos {
         return id
     }
 
+    //Obtener producto por id
+    suspend fun getProducto(id:String): Producto? = withContext(Dispatchers.IO) {
+        val resultado = dataBase.collection("productos").document(id).get().await()
+        if(resultado.exists()) {
+            val producto = resultado.toObject(Producto::class.java)
+            producto
+        } else {
+            null
+        }
+    }
+
     //Añadir producto
     fun addProducto(nombre: String, descripcion: String, categorias: ArrayList<String>,
                     precio: Double, tallas: ArrayList<String>, colores: ArrayList<String>,
@@ -85,6 +96,11 @@ class FirebaseRepos {
         var num_image = 0
         var contextResolver = contexto.contentResolver
 
+        var producto = getProducto(id)
+
+        if (producto!!.imagenes.isNotEmpty()){
+            urls = producto!!.imagenes
+        }
 
         for(image in imagenes){
             num_image += 1
@@ -103,10 +119,9 @@ class FirebaseRepos {
                 Toast.makeText(contexto, "No se ha guardado el producto", Toast.LENGTH_SHORT).show()
             }
         }
-
     }
 
-    //Coger todos los productos
+    //Obtener todos los productos
     suspend fun getAllProductos(): MutableList<Producto> = withContext(Dispatchers.IO){
         var listaProducto = mutableListOf<Producto>()
 
@@ -123,15 +138,40 @@ class FirebaseRepos {
     }
 
     //Editar producto
-    /*fun updateProducto(nombre: String, descripcion: String, categorias: ArrayList<String>,
+    fun updateProducto(nombre: String, descripcion: String, categorias: ArrayList<String>,
                        precio: Double, tallas: ArrayList<String>, colores: ArrayList<String>,
-                       imagenes: ArrayList<Uri>, contexto: Context, id: String) {
+                       imagenes: ArrayList<Uri>, id: String, contexto: Context) {
         dataBase.collection("productos").document(id).update("nombre", nombre)
         dataBase.collection("productos").document(id).update("descipcion", descripcion)
         dataBase.collection("productos").document(id).update("categorias", categorias)
         dataBase.collection("productos").document(id).update("precio", precio)
         dataBase.collection("productos").document(id).update("tallas", tallas)
         dataBase.collection("productos").document(id).update("colores", colores)
-        dataBase.collection("productos").document(id).update("imagenes", imagenes)
-    }*/
+
+        var updateImg = GlobalScope.launch(Dispatchers.IO) {
+            addImageProducto(imagenes, id, contexto)
+        }
+    }
+
+    //Obtener los pedidos que ya han sido entregados
+    suspend fun getPedidosHistorial(): MutableList<Pedido> = withContext(Dispatchers.IO) {
+        var listaPedido = mutableListOf<Pedido>()
+
+        dataBase.collection("pedidos").whereEqualTo("estado", "entregado").get().await().forEach { data ->
+            val pedido = data.toObject(Pedido::class.java)
+            listaPedido.add(pedido)
+        }
+        listaPedido
+    }
+
+    //Obtener los pedidos que no se han entregados
+    suspend fun getPedidosEstado(): MutableList<Pedido> = withContext(Dispatchers.IO) {
+        var listaPedido = mutableListOf<Pedido>()
+
+        dataBase.collection("pedidos").whereNotEqualTo("estado", "entregado").get().await().forEach { data ->
+            val pedido = data.toObject(Pedido::class.java)
+            listaPedido.add(pedido)
+        }
+        listaPedido
+    }
 }

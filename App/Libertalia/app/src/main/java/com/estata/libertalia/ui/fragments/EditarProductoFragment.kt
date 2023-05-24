@@ -1,6 +1,5 @@
 package com.estata.libertalia.ui.fragments
 
-import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Bundle
@@ -20,13 +19,13 @@ class EditarProductoFragment : Fragment() {
     private var producto : Producto? = null
     private val GALLERY_INTENT = 1
     lateinit var repos: FirebaseRepos
-    var listaUrls: ArrayList<Uri> = ArrayList()
+    var listaUris: ArrayList<Uri> = ArrayList()
 
-    /*override fun onCreate(savedInstanceState: Bundle?) {
+    override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
         arguments?.let {
-            producto = it.getSerializable("producto") as Producto
+            producto = it.getSerializable("productos") as Producto
         }
     }
 
@@ -45,6 +44,14 @@ class EditarProductoFragment : Fragment() {
         iniciar()
     }
 
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        //Añade las URLs de las imagenes a la lista
+        val imgUri = data?.data
+        listaUris.add(imgUri!!)
+    }
+
     fun iniciar() {
         //Inicializacion de elementos de la vista
         val btnEditar: Button = requireView().findViewById(R.id.btnEditar)
@@ -60,7 +67,7 @@ class EditarProductoFragment : Fragment() {
         edtDescripcion.setText(producto?.descipcion)
         edtCategorias.setText(producto?.categorias.toString())
         edtPrecio.setText(producto?.precio.toString())
-        edtTallas.setText(producto?.precio.toString())
+        edtTallas.setText(producto?.tallas.toString())
         edtColores.setText(producto?.colores.toString())
 
         //Listener para cambiar los datos y regresar a la pantalla de admin
@@ -68,25 +75,31 @@ class EditarProductoFragment : Fragment() {
             //Combrueba si hay una o mas categorias
             var categorias  = ArrayList<String>()
             if (edtCategorias.text.toString().contains(",")) {
-                categorias = edtCategorias.text.toString().split(",") as ArrayList<String>
+                val categLimpia = edtCategorias.text.toString().replace("[", "").replace("]", "")
+                categorias = categLimpia.split(",") as ArrayList<String>
             } else {
-                categorias.add(edtCategorias.text.toString())
+                val categLimpia = edtCategorias.text.toString().replace("[", "").replace("]", "")
+                categorias.add(categLimpia)
             }
 
             //Combrueba si hay una o mas tallas
             var tallas = ArrayList<String>()
             if (edtTallas.text.toString().contains(",")) {
-                tallas = edtTallas.text.toString().split(",") as ArrayList<String>
+                val tallasLimpia = edtTallas.text.toString().replace("[", "").replace("]", "")
+                tallas = tallasLimpia.split(",") as ArrayList<String>
             } else {
-                tallas.add(edtTallas.text.toString())
+                val tallasLimpia = edtTallas.text.toString().replace("[", "").replace("]", "")
+                tallas.add(tallasLimpia)
             }
 
             //Combrueba si hay una o mas colores
             var colores  = ArrayList<String>()
             if (edtColores.text.toString().contains(",")) {
-                colores = edtColores.text.toString().split(",") as ArrayList<String>
+                val coloLimpia = edtColores.text.toString().replace("[", "").replace("]", "")
+                colores = coloLimpia.split(",") as ArrayList<String>
             } else {
-                colores.add(edtColores.text.toString())
+                val coloLimpia = edtColores.text.toString().replace("[", "").replace("]", "")
+                colores.add(coloLimpia)
             }
 
             //Convierte el String en Double
@@ -94,11 +107,11 @@ class EditarProductoFragment : Fragment() {
 
             repos = FirebaseRepos()
             repos.updateProducto(edtNombre.text.toString(), edtDescripcion.text.toString(), categorias, precio,
-                tallas, colores, listaUrls, requireContext(), producto.id)
+                tallas, colores, listaUris, producto?.id.toString(), requireContext())
 
             view?.findNavController()?.navigate(R.id.adminFragment)
         }
-    }*/
+    }
 
     fun addImg (view: View) {
         //Inicializacion de elemento de la vista
@@ -109,12 +122,6 @@ class EditarProductoFragment : Fragment() {
             var intent = Intent(Intent.ACTION_GET_CONTENT)
             intent.type = "*/*"
             startActivityForResult(intent, GALLERY_INTENT)
-
-            //Añade las URLs de las imagenes a la lista
-            val imgUri = intent?.data
-            listaUrls.add(imgUri!!)
         }
-
-
     }
 }

@@ -68,8 +68,14 @@ class LoginFragment : Fragment() {
         //Loguin
         btnLogear.setOnClickListener{
             if (email.isNotEmpty() && contraseña.isNotEmpty()) {
-                if (email.toString() == "admin" && contraseña.toString() == "admin") {
-                    changeFragment(R.id.adminFragment)
+                if (email.toString() == "libertalia@gmail.com" && contraseña.toString() == "libertalia") {
+                    FirebaseAuth.getInstance().signInWithEmailAndPassword(email.toString(), contraseña.toString()).addOnCompleteListener {
+                        if (it.isSuccessful) {
+                            changeFragment(R.id.adminFragment)
+                        } else {
+                            showAlertEntryFailed()
+                        }
+                    }
                 } else {
                     FirebaseAuth.getInstance().signInWithEmailAndPassword(email.toString(), contraseña.toString()).addOnCompleteListener {
                         if (it.isSuccessful) {

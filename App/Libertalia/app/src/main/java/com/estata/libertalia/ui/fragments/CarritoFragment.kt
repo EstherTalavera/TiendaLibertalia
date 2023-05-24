@@ -25,9 +25,15 @@ class CarritoFragment : Fragment() {
 
     private fun iniciar(view: View) {
         //Inicializacion de elementos de la vista
+        val btnRegresar: Button = view.findViewById(R.id.btnRegresar)
         val btnComprar: Button = view.findViewById(R.id.btnComprar)
 
-        //Listener para cambiar a la pantalla
+        //Listener para cambiar a la pantalla de catalogo
+        btnRegresar.setOnClickListener{
+            view?.findNavController()?.navigate(R.id.catalogoFragment)
+        }
+
+        //Listener para cambiar a la pantalla de procesado
         btnComprar.setOnClickListener{
             view?.findNavController()?.navigate(R.id.pocesadoFragment)
         }

@@ -4,5 +4,6 @@ data class Pedido(
     var id: String = "",
     var estado: String = "",
     var productos: Map<Producto, Int>,
-    var precioTotal: Double = 0.0
+    var precioTotal: Double = 0.0,
+    var totalProductos: Int
 )
