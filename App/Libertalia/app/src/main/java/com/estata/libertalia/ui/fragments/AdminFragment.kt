@@ -51,6 +51,14 @@ class AdminFragment : Fragment(), com.estata.libertalia.data.interfaces.OnItemCl
         iniciar(view)
     }
 
+    //Listener para pasar los datos del producto a la pantalla de edictar producto
+    override fun onItemClick(producto: Producto) {
+        val bundel = Bundle()
+        bundel.putSerializable("productos", producto)
+
+        view?.findNavController()?.navigate(R.id.editarProductoFragment, bundel)
+    }
+
     fun iniciar(view: View) {
         //Inicializacion de elemento de la vista
         recview = view.findViewById(R.id.rvProductos)
@@ -70,13 +78,5 @@ class AdminFragment : Fragment(), com.estata.libertalia.data.interfaces.OnItemCl
             recview.adapter = adapter
             adapter.notifyDataSetChanged()
         }
-    }
-
-    //Listener para pasar los datos del producto a la pantalla de edictar producto
-    override fun onItemClick(producto: Producto) {
-        val bundel = Bundle()
-        bundel.putSerializable("productos", producto)
-
-        view?.findNavController()?.navigate(R.id.editarProductoFragment, bundel)
     }
 }

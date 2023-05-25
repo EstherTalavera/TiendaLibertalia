@@ -9,10 +9,12 @@ import com.squareup.picasso.Picasso
 class ProductoCatalogoViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private val binding = ProductoCatalogoBinding.bind(view)
 
-    fun bind (producto: Producto) {
+    fun bind (producto: Producto, listaProductos: ArrayList<Producto>) : ArrayList<Producto> {
         binding.tvNombre.text = producto.nombre
-        binding.tvCategorias.text = producto.categorias.toString()
+        binding.tvCategorias.text = producto.categorias
         binding.tvPrecio.text = producto.precio.toString() + "€"
         Picasso.get().load(producto.imagenes[0]).into(binding.ivImagen)
+
+        return listaProductos
     }
 }

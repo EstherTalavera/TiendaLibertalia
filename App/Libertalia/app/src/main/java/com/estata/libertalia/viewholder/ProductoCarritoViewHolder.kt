@@ -10,8 +10,8 @@ class ProductoCarritoViewHolder(view: View): RecyclerView.ViewHolder(view) {
 
     fun bind (producto: Producto) {
         binding.tvNombre.text = producto.nombre
-        //binding.tvNum.text =
+        binding.tvNum.text = "0"
         binding.tvPrecioIndiv.text = producto.precio.toString()
-        //binding.tvPrecioTotal.text =
+        binding.tvPrecioTotal.text = "0€"
     }
 }

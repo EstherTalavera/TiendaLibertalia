@@ -28,7 +28,7 @@ class FirebaseRepos {
     var user = Usuario("", ArrayList<Pedido>())
 
     //Producto
-    var producto = Producto("", "", "", ArrayList<String>(), 0.0, ArrayList<String>(), ArrayList<String>(), ArrayList<String>())
+    var producto = Producto("", "", "", "", 0.0, ArrayList<String>(), ArrayList<String>(), ArrayList<String>())
 
     //Añadir usuario nuevo
     fun addUser(pedios: ArrayList<Pedido>, contexto: Context) {
@@ -63,7 +63,7 @@ class FirebaseRepos {
     }
 
     //Añadir producto
-    fun addProducto(nombre: String, descripcion: String, categorias: ArrayList<String>,
+    fun addProducto(nombre: String, descripcion: String, categorias: String,
                     precio: Double, tallas: ArrayList<String>, colores: ArrayList<String>,
                     imagenes: ArrayList<Uri>, contexto: Context) {
         var id = UUID.randomUUID().toString()
@@ -138,7 +138,7 @@ class FirebaseRepos {
     }
 
     //Editar producto
-    fun updateProducto(nombre: String, descripcion: String, categorias: ArrayList<String>,
+    fun updateProducto(nombre: String, descripcion: String, categorias: String,
                        precio: Double, tallas: ArrayList<String>, colores: ArrayList<String>,
                        imagenes: ArrayList<Uri>, id: String, contexto: Context) {
         dataBase.collection("productos").document(id).update("nombre", nombre)

@@ -47,14 +47,6 @@ class ProductoNuevoFragment : Fragment() {
             val edtTallas: EditText = requireView().findViewById(R.id.edtTallas)
             val edtColores: EditText = requireView().findViewById(R.id.edtColores)
 
-            //Combrueba si hay una o mas categorias
-            var categorias  = ArrayList<String>()
-            if (edtCategorias.text.toString().contains(",")) {
-                categorias = edtCategorias.text.toString().split(",") as ArrayList<String>
-            } else {
-                categorias.add(edtCategorias.text.toString())
-            }
-
             //Combrueba si hay una o mas tallas
             var tallas = ArrayList<String>()
             if (edtTallas.text.toString().contains(",")) {
@@ -79,8 +71,8 @@ class ProductoNuevoFragment : Fragment() {
             listaUrls.add(imgUri!!)
 
             repos = FirebaseRepos()
-            repos.addProducto(edtNombre.text.toString(), edtDescripcion.text.toString(), categorias, precio,
-                tallas, colores, listaUrls, requireContext())
+            repos.addProducto(edtNombre.text.toString(), edtDescripcion.text.toString(), edtCategorias.text.toString(),
+                precio, tallas, colores, listaUrls, requireContext())
         }
     }
 

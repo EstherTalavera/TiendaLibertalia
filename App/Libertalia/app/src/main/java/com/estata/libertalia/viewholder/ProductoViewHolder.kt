@@ -6,7 +6,6 @@ import com.estata.libertalia.data.modelo.Producto
 import com.estata.libertalia.data.repositorio.FirebaseRepos
 import com.estata.libertalia.databinding.ProductoAdminBinding
 
-
 class ProductoViewHolder(view: View): RecyclerView.ViewHolder(view) {
     private val binding = ProductoAdminBinding.bind(view)
     private val repo = FirebaseRepos()

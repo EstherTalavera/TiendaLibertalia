@@ -18,7 +18,7 @@
         <activity
             android:name=".ui.InicioActivity"
             android:exported="false"
-            android:label="@string/title_activity_inicio"
+            android:label="@string/app_name"
             android:theme="@style/Theme.Libertalia" />
         <activity
             android:name=".ui.MainActivity"

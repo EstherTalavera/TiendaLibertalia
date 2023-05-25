@@ -19,10 +19,11 @@ import com.estata.libertalia.data.modelo.Producto
 import com.estata.libertalia.data.repositorio.FirebaseRepos
 import kotlinx.coroutines.launch
 
-
-class CatalogoFragment : Fragment() {
+class CatalogoFragment : Fragment(), com.estata.libertalia.data.interfaces.OnItemClickListener {
     lateinit var repos: FirebaseRepos
     lateinit var recview: RecyclerView
+    lateinit var adapter: ProductoCatalogoAdapter
+    lateinit var prodList: ArrayList<Producto>
 
         override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -45,6 +46,14 @@ class CatalogoFragment : Fragment() {
         iniciar(view)
     }
 
+    //Listener para pasar los datos del producto a la pantalla de detalle del producto
+    override fun onItemClick(producto: Producto) {
+        val bundel = Bundle()
+        bundel.putSerializable("productos", producto)
+
+        view?.findNavController()?.navigate(R.id.productoDetailFragment, bundel)
+    }
+
     fun iniciar(view: View) {
         //Inicializacion de elementos de la vista
         val busca: SearchView = view.findViewById(R.id.buscador)
@@ -58,7 +67,7 @@ class CatalogoFragment : Fragment() {
 
         //Recycler view
         var repo = FirebaseRepos()
-        var prodList = arrayListOf<Producto>()
+        prodList = arrayListOf<Producto>()
 
         recview.setHasFixedSize(true)
         recview.visibility = View.VISIBLE
@@ -66,9 +75,44 @@ class CatalogoFragment : Fragment() {
 
         lifecycleScope.launch{
             prodList = repo.getAllProductos() as ArrayList<Producto>
-            var adapter = ProductoCatalogoAdapter(prodList)
+            adapter = ProductoCatalogoAdapter(prodList, this@CatalogoFragment)
 
             recview.adapter = adapter
         }
+
+        //buscador
+        busca.setOnQueryTextListener(object: SearchView.OnQueryTextListener{
+            //mientras esctibe
+            override fun onQueryTextChange(query: String): Boolean {
+                if (query.isEmpty()) {
+                    adapter.updateData(prodList)
+                } else {
+                    filtrar(query)
+                }
+                return false
+            }
+
+            //cuando termina de escribir
+            override fun onQueryTextSubmit(query: String): Boolean {
+                if (query.isEmpty()) {
+                    adapter.updateData(prodList)
+                } else {
+                    filtrar(query)
+                }
+                return false
+            }
+        })
+    }
+
+    fun filtrar(query: String) {
+        var listaFiltrada = arrayListOf<Producto>()
+
+        for (prod in prodList) {
+            if (prod.categorias.contains(query)) {
+                listaFiltrada.add(prod)
+            }
+        }
+
+        adapter.updateData(listaFiltrada)
     }
 }

@@ -65,23 +65,13 @@ class EditarProductoFragment : Fragment() {
         //Insertar valores en los campos
         edtNombre.setText(producto?.nombre)
         edtDescripcion.setText(producto?.descipcion)
-        edtCategorias.setText(producto?.categorias.toString())
+        edtCategorias.setText(producto?.categorias)
         edtPrecio.setText(producto?.precio.toString())
         edtTallas.setText(producto?.tallas.toString())
         edtColores.setText(producto?.colores.toString())
 
         //Listener para cambiar los datos y regresar a la pantalla de admin
         btnEditar.setOnClickListener{
-            //Combrueba si hay una o mas categorias
-            var categorias  = ArrayList<String>()
-            if (edtCategorias.text.toString().contains(",")) {
-                val categLimpia = edtCategorias.text.toString().replace("[", "").replace("]", "")
-                categorias = categLimpia.split(",") as ArrayList<String>
-            } else {
-                val categLimpia = edtCategorias.text.toString().replace("[", "").replace("]", "")
-                categorias.add(categLimpia)
-            }
-
             //Combrueba si hay una o mas tallas
             var tallas = ArrayList<String>()
             if (edtTallas.text.toString().contains(",")) {
@@ -95,10 +85,10 @@ class EditarProductoFragment : Fragment() {
             //Combrueba si hay una o mas colores
             var colores  = ArrayList<String>()
             if (edtColores.text.toString().contains(",")) {
-                val coloLimpia = edtColores.text.toString().replace("[", "").replace("]", "")
+                val coloLimpia = edtColores.text.toString().toLowerCase().replace("[", "").replace("]", "")
                 colores = coloLimpia.split(",") as ArrayList<String>
             } else {
-                val coloLimpia = edtColores.text.toString().replace("[", "").replace("]", "")
+                val coloLimpia = edtColores.text.toString().toLowerCase().replace("[", "").replace("]", "")
                 colores.add(coloLimpia)
             }
 
@@ -106,7 +96,7 @@ class EditarProductoFragment : Fragment() {
             val precio = edtPrecio.text.toString().toDouble()
 
             repos = FirebaseRepos()
-            repos.updateProducto(edtNombre.text.toString(), edtDescripcion.text.toString(), categorias, precio,
+            repos.updateProducto(edtNombre.text.toString(), edtDescripcion.text.toString(), edtCategorias.text.toString(), precio,
                 tallas, colores, listaUris, producto?.id.toString(), requireContext())
 
             view?.findNavController()?.navigate(R.id.adminFragment)
