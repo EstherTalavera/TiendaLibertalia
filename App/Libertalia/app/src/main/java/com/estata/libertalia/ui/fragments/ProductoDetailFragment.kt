@@ -85,7 +85,12 @@ class ProductoDetailFragment : Fragment() {
 
         ivMenos.setOnClickListener {
             contador--
-            tvContador.setText(contador.toString())
+            if (contador < 0) {
+                contador = 0
+                tvContador.setText(contador.toString())
+            } else {
+                tvContador.setText(contador.toString())
+            }
         }
 
         ivMas.setOnClickListener {

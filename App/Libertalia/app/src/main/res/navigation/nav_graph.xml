@@ -5,8 +5,6 @@
     android:id="@+id/menu_laterl_nav_graph"
     app:startDestination="@id/catalogoFragment">
 
-    <!-- Fragmento de login -->
-
     <!-- Fragmentos del admin -->
     <fragment
         android:id="@+id/adminFragment"
@@ -53,17 +51,17 @@
     <fragment
         android:id="@+id/pocesadoFragment"
         android:name="com.estata.libertalia.ui.fragments.PocesadoFragment"
-        android:label="fragment_pocesado"
+        android:label="Compra realizada"
         tools:layout="@layout/fragment_pocesado" />
     <fragment
         android:id="@+id/productoDetailFragment"
         android:name="com.estata.libertalia.ui.fragments.ProductoDetailFragment"
-        android:label="fragment_producto_detail"
+        android:label="Detalles del producto"
         tools:layout="@layout/fragment_producto_detail" />
     <fragment
         android:id="@+id/carritoFragment"
         android:name="com.estata.libertalia.ui.fragments.CarritoFragment"
-        android:label="fragment_carrito"
+        android:label="Carrito"
         tools:layout="@layout/fragment_carrito" />
 
 </navigation>
