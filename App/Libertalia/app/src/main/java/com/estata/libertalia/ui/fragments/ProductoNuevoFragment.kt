@@ -14,6 +14,7 @@ import android.widget.ImageView
 import androidx.navigation.findNavController
 import com.estata.libertalia.R
 import com.estata.libertalia.data.repositorio.FirebaseRepos
+import com.squareup.picasso.Picasso
 
 class ProductoNuevoFragment : Fragment() {
     private val GALLERY_INTENT = 1
@@ -46,6 +47,7 @@ class ProductoNuevoFragment : Fragment() {
             val edtPrecio: EditText = requireView().findViewById(R.id.edtPrecio)
             val edtTallas: EditText = requireView().findViewById(R.id.edtTallas)
             val edtColores: EditText = requireView().findViewById(R.id.edtColores)
+            val ivImagen: ImageView = requireView().findViewById(R.id.ivImagen)
 
             //Combrueba si hay una o mas tallas
             var tallas = ArrayList<String>()
@@ -69,6 +71,8 @@ class ProductoNuevoFragment : Fragment() {
             //Añade las URLs de las imagenes a la lista
             val imgUri = data?.data
             listaUrls.add(imgUri!!)
+
+            Picasso.get().load(listaUrls[0]).into(ivImagen)
 
             repos = FirebaseRepos()
             repos.addProducto(edtNombre.text.toString(), edtDescripcion.text.toString(), edtCategorias.text.toString(),

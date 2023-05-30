@@ -11,7 +11,7 @@ class PedidoEstadoViewHolder(view: View): RecyclerView.ViewHolder(view) {
     fun bind (pedido: Pedido) {
         binding.tvId.text = pedido.id
         binding.tvEstado.text = pedido.estado
-        binding.tvNumProd.text = pedido.totalProductos.toString()
-        binding.tvTotal.text = pedido.precioTotal.toString()
+        binding.tvNumProd.text = pedido.totalProductos
+        binding.tvTotal.text = pedido.precioTotal + " €"
     }
 }

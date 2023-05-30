@@ -14,6 +14,7 @@ import androidx.navigation.findNavController
 import com.estata.libertalia.R
 import com.estata.libertalia.data.modelo.Producto
 import com.estata.libertalia.data.repositorio.FirebaseRepos
+import com.squareup.picasso.Picasso
 
 class EditarProductoFragment : Fragment() {
     private var producto : Producto? = null
@@ -61,6 +62,7 @@ class EditarProductoFragment : Fragment() {
         val edtPrecio: EditText = requireView().findViewById(R.id.edtPrecio)
         val edtTallas: EditText = requireView().findViewById(R.id.edtTallas)
         val edtColores: EditText = requireView().findViewById(R.id.edtColores)
+        val ivImagen: ImageView = requireView().findViewById(R.id.ivImagen)
 
         //Insertar valores en los campos
         edtNombre.setText(producto?.nombre)
@@ -69,6 +71,7 @@ class EditarProductoFragment : Fragment() {
         edtPrecio.setText(producto?.precio.toString())
         edtTallas.setText(producto?.tallas.toString())
         edtColores.setText(producto?.colores.toString())
+        Picasso.get().load(producto!!.imagenes[0]).into(ivImagen)
 
         //Listener para cambiar los datos y regresar a la pantalla de admin
         btnEditar.setOnClickListener{
