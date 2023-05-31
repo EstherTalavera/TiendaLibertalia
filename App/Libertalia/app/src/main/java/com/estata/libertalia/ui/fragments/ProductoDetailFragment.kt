@@ -5,11 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ArrayAdapter
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.Spinner
-import android.widget.TextView
+import android.widget.*
 import androidx.navigation.findNavController
 import com.estata.libertalia.R
 import com.estata.libertalia.data.modelo.Producto
@@ -17,6 +13,7 @@ import com.squareup.picasso.Picasso
 
 class ProductoDetailFragment : Fragment() {
     private var producto : Producto? = null
+    var cantidad: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -99,7 +96,17 @@ class ProductoDetailFragment : Fragment() {
         }
 
         //Listener para añadir el producto al carrito
-        btnAñadir.setOnClickListener{}
+        btnAñadir.setOnClickListener{
+            val bundle = Bundle()
+            bundle.putSerializable("prodCarrito", producto)
+            //bundle.putSerializable("cantidad", cantidad)
+
+            if (contador > 0) {
+                view?.findNavController()?.navigate(R.id.carritoFragment, bundle)
+            } else {
+                Toast.makeText(requireContext(), "Tienes que añadir al menos uno", Toast.LENGTH_SHORT).show()
+            }
+        }
     }
 
 }

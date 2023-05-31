@@ -18,7 +18,6 @@ import com.estata.libertalia.data.repositorio.FirebaseRepos
 import kotlinx.coroutines.launch
 
 class EstadoFragment : Fragment() {
-    lateinit var repos: FirebaseRepos
     lateinit var recview: RecyclerView
 
     override fun onCreateView(
